@@ -8,46 +8,67 @@
 
 body{
 margin:0;
-padding:0;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
-font-family: 'Georgia', serif;
+font-family: "Georgia", serif;
+background: radial-gradient(circle at top,#1b1035,#090015,#000);
 color:white;
-overflow:auto;
+overflow-x:hidden;
 }
 
-/* estrellas animadas */
+/* fondo de estrellas */
 
-body::before{
-content:"";
+.stars{
 position:fixed;
 width:100%;
 height:100%;
 background-image:radial-gradient(white 1px, transparent 1px);
-background-size:50px 50px;
-opacity:0.25;
-animation:stars 60s linear infinite;
+background-size:40px 40px;
+opacity:0.2;
+animation:starsMove 120s linear infinite;
+z-index:-1;
 }
 
-@keyframes stars{
+@keyframes starsMove{
 from{transform:translateY(0);}
-to{transform:translateY(-1000px);}
+to{transform:translateY(-2000px);}
+}
+
+/* corazones flotando */
+
+.heart{
+position:fixed;
+bottom:-50px;
+font-size:20px;
+animation:float 12s linear infinite;
+opacity:0.6;
+}
+
+@keyframes float{
+0%{transform:translateY(0) scale(1);}
+100%{transform:translateY(-120vh) scale(1.5);}
+}
+
+/* contenedor principal */
+
+.container{
+width:100%;
+display:flex;
+justify-content:center;
+padding:80px 20px;
 }
 
 /* carta */
 
 .carta{
-width:80%;
-max-width:850px;
-background:rgba(255,255,255,0.06);
-border-radius:20px;
-padding:50px;
-box-shadow:0 0 40px rgba(0,0,0,0.6);
-backdrop-filter:blur(8px);
-line-height:1.9;
+max-width:900px;
+width:100%;
+background:rgba(255,255,255,0.05);
+border-radius:25px;
+padding:70px;
+box-shadow:
+0 0 40px rgba(255,0,150,0.2),
+0 0 80px rgba(120,0,255,0.15);
+backdrop-filter:blur(10px);
+line-height:2;
 font-size:20px;
 }
 
@@ -55,37 +76,64 @@ font-size:20px;
 
 .titulo{
 text-align:center;
-font-size:38px;
-margin-bottom:40px;
-letter-spacing:2px;
-text-shadow:0 0 10px #ff9afc,0 0 20px #ff9afc;
+font-size:48px;
+margin-bottom:50px;
+letter-spacing:3px;
+color:#ffb3ff;
+text-shadow:
+0 0 10px #ff4dff,
+0 0 25px #ff4dff,
+0 0 40px #c000ff;
 }
 
-/* texto */
+/* separador */
+
+.separador{
+text-align:center;
+font-size:26px;
+margin:40px 0;
+opacity:0.7;
+}
+
+/* párrafos */
 
 p{
-margin-bottom:25px;
+margin-bottom:28px;
+opacity:0;
+transform:translateY(30px);
+animation:aparecer 1.2s forwards;
+}
+
+p:nth-child(odd){animation-delay:.4s;}
+p:nth-child(even){animation-delay:.8s;}
+
+@keyframes aparecer{
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 /* mensaje final */
 
-.final{
-margin-top:40px;
-padding-top:25px;
+.perdon{
+margin-top:60px;
+padding-top:35px;
 border-top:1px solid rgba(255,255,255,0.3);
-font-size:22px;
+font-size:23px;
 text-align:center;
 color:#ffd6ff;
+text-shadow:0 0 10px #ff9afc;
 }
 
 /* firma */
 
 .firma{
-margin-top:35px;
+margin-top:40px;
 text-align:right;
-font-size:24px;
-color:#ffb3f7;
-text-shadow:0 0 8px #ff6be8;
+font-size:28px;
+color:#ff8ae2;
+text-shadow:0 0 15px #ff4df0;
 }
 
 </style>
@@ -93,9 +141,21 @@ text-shadow:0 0 8px #ff6be8;
 
 <body>
 
+<div class="stars"></div>
+
+<!-- corazones -->
+<div class="heart" style="left:10%">❤️</div>
+<div class="heart" style="left:25%;animation-delay:2s;">❤️</div>
+<div class="heart" style="left:45%;animation-delay:5s;">❤️</div>
+<div class="heart" style="left:65%;animation-delay:3s;">❤️</div>
+<div class="heart" style="left:80%;animation-delay:7s;">❤️</div>
+
+<div class="container">
+
 <div class="carta">
 
 <div class="titulo">Para el amor de mi vida</div>
+<div class="separador">✦ ✦ ✦</div>
 
 <p>
 Esta noche de jueves 5 de marzo, mientras el mundo poco a poco se queda en silencio y las luces de la noche empiezan a brillar, mi corazón no puede dejar de pensar en ti. Hay noches en las que uno simplemente existe… y hay noches como esta, en las que uno siente demasiado, en las que cada pensamiento tiene tu nombre, cada suspiro tiene tu recuerdo y cada latido parece repetir suavemente lo mucho que te amo.
@@ -129,16 +189,24 @@ Te amo con intensidad.
 Te amo con todo lo que soy.
 Y si el destino me permite seguir caminando contigo, entonces cada día será otra oportunidad para demostrarte que mi amor por ti es verdadero, profundo y eterno.</p>
 
-<div class="final">
-Antes de terminar esta carta quiero decirte algo muy sincero desde el fondo de mi corazón.  
-Perdóname si hoy me dejé llevar por los celos y actué de una manera que no fue la mejor. A veces el miedo de perder a alguien tan importante como tú puede nublar mis emociones. Pero quiero que sepas que lo que siento por ti es real, profundo y nace del amor que tengo por ti. Prometo aprender, mejorar y demostrarte con hechos que mi amor siempre buscará cuidarte y hacerte feliz.
+<div class="separador">♡</div>
+
+<div class="perdon">
+Antes de terminar esta carta quiero decir algo que nace desde lo más sincero de mi corazón.
+
+Perdóname si hoy me dejé llevar por los celos y actué de una forma que no fue la mejor. A veces el miedo de perder a alguien tan importante como tú puede hacer que las emociones se confundan. Pero quiero que sepas que lo que siento por ti es amor verdadero, y ese amor también significa aprender, mejorar y ser una mejor persona para ti.
+
+No quiero que los errores definan lo nuestro. Quiero que lo haga el amor, el respeto y todo lo bonito que podemos seguir construyendo juntos.
 </div>
+<div class="separador">✦ ✦ ✦</div>
 
 <div class="firma">
 Con todo mi amor ❤️
+  <p><strong> JUAN KALETH MENDOZA PRIMERA 💜</strong></p>
 </div>
 
+</div>
 </div>
 
 </body>
-  </html>
+</html>
