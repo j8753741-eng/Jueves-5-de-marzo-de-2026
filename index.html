@@ -6,6 +6,10 @@
 
 <style>
 
+html{
+scroll-behavior:smooth;
+}
+
 body{
 margin:0;
 font-family: Georgia, serif;
@@ -59,14 +63,43 @@ text-align:center;
 padding:40px;
 }
 
+/* TITULO NEON CON ENCENDIDO */
+
 .portada h1{
 font-size:55px;
 letter-spacing:4px;
 color:#ffb3ff;
+opacity:0;
+animation:neonOn 3s forwards;
+}
+
+@keyframes neonOn{
+
+0%{
+opacity:0;
+text-shadow:none;
+}
+
+40%{
+opacity:.3;
+text-shadow:0 0 5px #ff4dff;
+}
+
+70%{
+opacity:.7;
+text-shadow:
+0 0 10px #ff4dff,
+0 0 25px #ff4dff;
+}
+
+100%{
+opacity:1;
 text-shadow:
 0 0 10px #ff4dff,
 0 0 30px #ff4dff,
 0 0 60px #a000ff;
+}
+
 }
 
 .portada p{
@@ -138,16 +171,53 @@ transform:translateY(0);
 }
 }
 
-/* mensaje perdon */
+/* SECCION PERDON CON BRILLO ESPECIAL */
 
 .perdon{
+
 margin-top:70px;
-padding-top:35px;
-border-top:1px solid rgba(255,255,255,.3);
+padding:40px;
+border-radius:20px;
+
+background:linear-gradient(
+135deg,
+rgba(255,150,255,0.15),
+rgba(255,100,200,0.15)
+);
+
+border:1px solid rgba(255,200,255,0.5);
+
+box-shadow:
+0 0 20px rgba(255,120,255,0.4),
+0 0 40px rgba(255,120,255,0.2);
+
 font-size:23px;
 text-align:center;
 color:#ffd6ff;
-text-shadow:0 0 12px #ff9afc;
+
+animation:glowPulse 4s infinite;
+}
+
+@keyframes glowPulse{
+
+0%{
+box-shadow:
+0 0 15px rgba(255,120,255,0.3),
+0 0 30px rgba(255,120,255,0.1);
+}
+
+50%{
+box-shadow:
+0 0 35px rgba(255,120,255,0.7),
+0 0 60px rgba(255,120,255,0.4);
+}
+
+100%{
+box-shadow:
+0 0 15px rgba(255,120,255,0.3),
+0 0 30px rgba(255,120,255,0.1);
+}
+
 }
 
 /* firma */
@@ -167,15 +237,13 @@ text-shadow:0 0 15px #ff4df0;
 
 <div class="stars"></div>
 
-<!-- corazones flotando -->
+<!-- corazones -->
 <div class="heart" style="left:10%">❤️</div>
 <div class="heart" style="left:20%;animation-delay:2s">❤️</div>
 <div class="heart" style="left:35%;animation-delay:4s">❤️</div>
 <div class="heart" style="left:50%;animation-delay:1s">❤️</div>
 <div class="heart" style="left:65%;animation-delay:5s">❤️</div>
 <div class="heart" style="left:80%;animation-delay:3s">❤️</div>
-
-<!-- portada -->
 
 <section class="portada">
 
@@ -188,14 +256,13 @@ cuando mi corazón pensaba solamente en ti.
 
 </section>
 
-<!-- carta -->
-
 <div class="container">
 
 <div class="carta">
 
 <div class="titulo">Mi amor</div>
-<div class="separador">✦ ✦ ✦</div>
+
+<div class="sep">✦ ✦ ✦</div>
 
 <p>
 Esta noche de jueves 5 de marzo, mientras el mundo poco a poco se queda en silencio y las luces de la noche empiezan a brillar, mi corazón no puede dejar de pensar en ti. Hay noches en las que uno simplemente existe… y hay noches como esta, en las que uno siente demasiado, en las que cada pensamiento tiene tu nombre, cada suspiro tiene tu recuerdo y cada latido parece repetir suavemente lo mucho que te amo.
@@ -229,7 +296,7 @@ Te amo con intensidad.
 Te amo con todo lo que soy.
 Y si el destino me permite seguir caminando contigo, entonces cada día será otra oportunidad para demostrarte que mi amor por ti es verdadero, profundo y eterno.</p>
 
-<div class="separador">♡</div>
+<div class="sep">♡</div>
 
 <div class="perdon">
 Antes de terminar esta carta quiero decir algo que nace desde lo más sincero de mi corazón.
@@ -238,7 +305,7 @@ Perdóname si hoy me dejé llevar por los celos y actué de una forma que no fue
 
 No quiero que los errores definan lo nuestro. Quiero que lo haga el amor, el respeto y todo lo bonito que podemos seguir construyendo juntos.
 </div>
-<div class="separador">✦ ✦ ✦</div>
+<div class="sep">✦ ✦ ✦</div>
 
 <div class="firma">
 Con todo mi amor ❤️
@@ -249,9 +316,19 @@ Con todo mi amor ❤️
 </div>
 
 <script>
-window.onload = function() {
-  window.scrollTo(0, 0);
+
+/* asegurar inicio arriba */
+
+if ('scrollRestoration' in history) {
+history.scrollRestoration = 'manual';
+}
+
+window.onload = () => {
+setTimeout(()=>{
+window.scrollTo(0,0);
+},10);
 };
+
 </script>
 
 </body>
